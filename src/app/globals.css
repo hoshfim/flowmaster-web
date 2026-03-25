@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Theme transition ────────────────────────────────────────────────────── */
+html {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* ── Dark theme tokens ───────────────────────────────────────────────────── */
+[data-theme="fm-dark"] {
+  --fm-muted:        #6b8cad;
+  --fm-dim:          #3a5472;
+  --fm-border:       rgba(99,180,255,0.09);
+  --fm-border-2:     rgba(99,180,255,0.18);
+  --fm-green:        #00e5a0;
+  --fm-blue:         #3d9dff;
+  --fm-amber:        #f5a623;
+  --fm-red:          #ff5252;
+  --fm-grid-line:    rgba(61,157,255,0.05);
+  --fm-glow-green:   rgba(0,229,160,0.15);
+  --fm-glow-blue:    rgba(61,157,255,0.12);
+  --fm-card-shadow:  0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+  --fm-card-hover:   0 4px 16px rgba(0,0,0,0.4);
+}
+
+/* ── Light theme tokens ──────────────────────────────────────────────────── */
+[data-theme="fm-light"] {
+  --fm-muted:        #6b80a0;
+  --fm-dim:          #a0b0c8;
+  --fm-border:       rgba(0,100,200,0.08);
+  --fm-border-2:     rgba(0,100,200,0.15);
+  --fm-green:        #00b87d;
+  --fm-blue:         #2980ff;
+  --fm-amber:        #e08a00;
+  --fm-red:          #e53e3e;
+  --fm-grid-line:    rgba(0,100,200,0.04);
+  --fm-glow-green:   rgba(0,184,125,0.10);
+  --fm-glow-blue:    rgba(41,128,255,0.08);
+  --fm-card-shadow:  0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.05);
+  --fm-card-hover:   0 4px 16px rgba(0,0,0,0.10);
+}
+
+html, body { font-family: 'DM Sans', sans-serif; }
+
+/* ── Card elevation ──────────────────────────────────────────────────────── */
+.card {
+  border: 1px solid var(--fm-border);
+  box-shadow: var(--fm-card-shadow);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.card:hover { box-shadow: var(--fm-card-hover); }
+
+/* ── Form inputs ─────────────────────────────────────────────────────────── */
+.input, .select, .textarea {
+  background-color: oklch(var(--b3));
+  border-color: var(--fm-border-2);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.input:focus, .select:focus, .textarea:focus {
+  outline: none;
+  border-color: var(--fm-green);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--fm-green) 15%, transparent);
+}
+
+/* ── Nav menu items ──────────────────────────────────────────────────────── */
+.menu li > *:not(ul):not(.menu-title):not(details) {
+  border-radius: 0.75rem;
+  transition: background-color 0.12s ease;
+}
+
+/* ── Pulse dot ───────────────────────────────────────────────────────────── */
+@keyframes pulseDot {
+  0%,100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--fm-green) 55%, transparent); }
+  50%      { box-shadow: 0 0 0 7px transparent; }
+}
+.pulse-dot {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 8px; height: 8px;
+  background: var(--fm-green);
+  border-radius: 9999px;
+  animation: pulseDot 2.2s infinite;
+}
+
+/* ── Animations ──────────────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: fadeUp 0.7s ease both; }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.animate-slide-in { animation: slideIn 0.2s ease both; }
+
+/* ── Spinner ─────────────────────────────────────────────────────────────── */
+@keyframes spin { to { transform: rotate(360deg); } }
+.fm-spinner {
+  display: inline-block;
+  width: 14px; height: 14px;
+  border: 2px solid rgba(255,255,255,.2);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin .6s linear infinite;
+}
+
+/* ── KPI card accent line ────────────────────────────────────────────────── */
+.kpi-card {
+  position: relative;
+  overflow: hidden;
+}
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--kpi-accent, var(--fm-green));
+  opacity: 0.6;
+}
+
+/* ── Sidebar active item ─────────────────────────────────────────────────── */
+.nav-active {
+  background-color: color-mix(in srgb, var(--fm-green) 12%, transparent) !important;
+  color: var(--fm-green) !important;
+}
+[data-theme="fm-light"] .nav-active {
+  background-color: color-mix(in srgb, var(--fm-green) 10%, transparent) !important;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--fm-border-2);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--fm-dim); }

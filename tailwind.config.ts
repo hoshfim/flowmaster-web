@@ -1,0 +1,120 @@
+import type { Config } from 'tailwindcss'
+
+const config: Config = {
+  content: [
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {
+      fontFamily: {
+        display: ['Syne', 'sans-serif'],
+        body:    ['DM Sans', 'sans-serif'],
+        mono:    ['DM Mono', 'monospace'],
+      },
+      colors: {
+        shopify: '#96bf47',
+        tiktok:  '#ff0050',
+      },
+      animation: {
+        'marquee':  'marquee 30s linear infinite',
+        'float':    'float 8s ease-in-out infinite',
+        'fade-up':  'fadeUp 0.7s ease both',
+        'slide-in': 'slideIn 0.2s ease both',
+      },
+      keyframes: {
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to:   { transform: 'translateX(-50%)' },
+        },
+        float: {
+          '0%,100%': { transform: 'translateY(0)' },
+          '50%':     { transform: 'translateY(-12px)' },
+        },
+        fadeUp: {
+          from: { opacity: '0', transform: 'translateY(22px)' },
+          to:   { opacity: '1', transform: 'translateY(0)' },
+        },
+        slideIn: {
+          from: { opacity: '0', transform: 'translateX(-8px)' },
+          to:   { opacity: '1', transform: 'translateX(0)' },
+        },
+      },
+    },
+  },
+  plugins: [require('daisyui')],
+  daisyui: {
+    themes: [
+      {
+        'fm-dark': {
+          'primary':           '#00e5a0',
+          'primary-content':   '#050d1a',
+          'secondary':         '#3d9dff',
+          'secondary-content': '#050d1a',
+          'accent':            '#f5a623',
+          'accent-content':    '#050d1a',
+          'neutral':           '#0d1c35',
+          'neutral-content':   '#6b8cad',
+          'base-100':          '#050d1a',
+          'base-200':          '#091427',
+          'base-300':          '#0d1c35',
+          'base-content':      '#e8f4ff',
+          'info':              '#3d9dff',
+          'info-content':      '#050d1a',
+          'success':           '#00e5a0',
+          'success-content':   '#050d1a',
+          'warning':           '#f5a623',
+          'warning-content':   '#050d1a',
+          'error':             '#ff5252',
+          'error-content':     '#ffffff',
+          '--rounded-box':     '0.75rem',
+          '--rounded-btn':     '9999px',
+          '--rounded-badge':   '9999px',
+          '--animation-btn':   '0.15s',
+          '--animation-input': '0.15s',
+          '--btn-focus-scale': '0.98',
+          '--border-btn':      '1px',
+        },
+      },
+      {
+        'fm-light': {
+          'primary':           '#00b87d',
+          'primary-content':   '#ffffff',
+          'secondary':         '#2980ff',
+          'secondary-content': '#ffffff',
+          'accent':            '#e08a00',
+          'accent-content':    '#ffffff',
+          'neutral':           '#e8edf5',
+          'neutral-content':   '#4a6080',
+          'base-100':          '#f5f7fb',
+          'base-200':          '#edf0f7',
+          'base-300':          '#e2e7f0',
+          'base-content':      '#0d1829',
+          'info':              '#2980ff',
+          'info-content':      '#ffffff',
+          'success':           '#00b87d',
+          'success-content':   '#ffffff',
+          'warning':           '#e08a00',
+          'warning-content':   '#ffffff',
+          'error':             '#e53e3e',
+          'error-content':     '#ffffff',
+          '--rounded-box':     '0.75rem',
+          '--rounded-btn':     '9999px',
+          '--rounded-badge':   '9999px',
+          '--animation-btn':   '0.15s',
+          '--animation-input': '0.15s',
+          '--btn-focus-scale': '0.98',
+          '--border-btn':      '1px',
+        },
+      },
+    ],
+    darkMode: false,
+    base: true,
+    styled: true,
+    utils: true,
+    logs: false,
+  },
+}
+
+export default config
